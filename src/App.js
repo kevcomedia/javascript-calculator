@@ -9,6 +9,8 @@ function reducer(state, action) {
   switch (action.type) {
     case 'digit':
       return { input: state.input + action.value };
+    case 'operator':
+      return { input: state.input + action.operator };
     default:
       throw new Error();
   }
