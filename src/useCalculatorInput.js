@@ -42,12 +42,32 @@ function inputOperator(currentInput, operator) {
   return { input: currentInput + operator };
 }
 
+/**
+ * Appends a `.` to the input string if possible. If the last number already has
+ * a decimal point, nothing is appended.
+ */
+function inputDecimal(currentInput) {
+  const numberInputs = currentInput.split(/[-+*/]/);
+  const lastNumberInput = numberInputs[numberInputs.length - 1];
+
+  if (lastNumberInput === '') {
+    // i.e., the input string ends with an operator
+    return { input: currentInput + '.' };
+  }
+  if (Number.isNaN(Number(lastNumberInput + '.'))) {
+    return { input: currentInput };
+  }
+  // I'd like a more general test so I don't have to return this same object in
+  // two different places.
+  return { input: currentInput + '.' };
+}
+
 function reducer(state, action) {
   switch (action.type) {
     case 'digit':
       return inputDigit(state.input, action.digit);
     case 'decimal':
-      return { input: state.input + '.' };
+      return inputDecimal(state.input);
     case 'operator':
       return inputOperator(state.input, action.operator);
     case 'clear':
