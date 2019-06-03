@@ -84,6 +84,10 @@ function evaluatePostfix(postfixQueue) {
     );
   }
 
+  if (!/^[-+]?\d+(\.\d+)?$/.test(evalStack[0])) {
+    throw new Error(`Invalid value: ${evalStack[0]}`);
+  }
+
   return evalStack[0];
 }
 
