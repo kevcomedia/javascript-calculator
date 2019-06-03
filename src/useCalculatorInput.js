@@ -1,5 +1,16 @@
 import { useReducer } from 'react';
 
+/**
+ * Appends the digit input to the current input string. If the last number (NOT
+ * digit) in the input string is a `0`, it's replaced with the digit input.
+ *
+ * Examples:
+ *   ('1+2', '3') => '1+23'
+ *   ('2+10', '5') => '2+105'
+ *   ('2+10', '0') => '2+100'
+ *   ('5*0', '0') => '5*0'
+ *   ('5*0', '3') => '5*3'
+ */
 function inputDigit(currentInput, digit) {
   const numberInputs = currentInput.split(/[-+*/]/);
   const lastNumberInput = numberInputs[numberInputs.length - 1];
