@@ -16,7 +16,12 @@ function CalculatorButtons({ dispatch }) {
 
   return (
     <div className="buttons">
-      <CalculatorButton label="AC" size="wide" color="red" />
+      <CalculatorButton
+        label="AC"
+        size="wide"
+        color="red"
+        onClick={() => dispatch({ type: 'clear' })}
+      />
       <CalculatorButton
         label="/"
         color="light"

@@ -11,6 +11,8 @@ function reducer(state, action) {
       return { input: state.input + action.digit };
     case 'operator':
       return { input: state.input + action.operator };
+    case 'clear':
+      return { input: '0' };
     default:
       throw new Error();
   }
