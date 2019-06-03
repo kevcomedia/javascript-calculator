@@ -9,9 +9,17 @@
   color: #fff;
   font-size: 2rem;
   margin-bottom: 1rem;
+  overflow: hidden;
   padding: 0.5em 1em;
   text-align: right;
+  text-overflow: '';
   text-shadow: 0 0 0.15em #fff;
+  white-space: nowrap;
+}
+
+.display_error {
+  color: #f00;
+  text-shadow: 0 0 0.15em #f00;
 }
 
 .buttons {
