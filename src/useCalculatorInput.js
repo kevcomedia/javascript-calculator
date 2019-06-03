@@ -1,4 +1,5 @@
 import { useReducer } from 'react';
+import evaluateInput from './evaluateInput';
 
 /**
  * Appends the digit input to the current input string. If the last number (NOT
@@ -62,6 +63,23 @@ function inputDecimal(currentInput) {
   return { input: currentInput + '.' };
 }
 
+/**
+ * Evaluates the current input and returns the answer, if possible. If the input
+ * is malformed (e.g., ends with an operator), no evaluation happens, and the
+ * same input is returned.
+ */
+function inputEquals(currentInput) {
+  const isLastInputOperator = /[-+*/]$/.test(currentInput);
+  if (isLastInputOperator) {
+    return { input: currentInput };
+  }
+  const answer = evaluateInput(currentInput);
+  // As for this mix of number-string-vice-versa coercions, it makes it so it
+  // shows at most 10 digits of precision, but truncates the trailing zeroes
+  // after the decimal point from the result of `toPrecision`.
+  return { input: `${+answer.toPrecision(10)}` };
+}
+
 function reducer(state, action) {
   switch (action.type) {
     case 'digit':
@@ -72,6 +90,8 @@ function reducer(state, action) {
       return inputOperator(state.input, action.operator);
     case 'clear':
       return { input: '0' };
+    case 'equals':
+      return inputEquals(state.input);
     default:
       throw new Error();
   }
