@@ -73,14 +73,28 @@ function inputEquals(currentInput) {
   if (isLastInputOperator) {
     return { input: currentInput };
   }
-  const answer = evaluateInput(currentInput);
-  // As for this mix of number-string-vice-versa coercions, it makes it so it
-  // shows at most 10 digits of precision, but truncates the trailing zeroes
-  // after the decimal point from the result of `toPrecision`.
-  return { input: `${+answer.toPrecision(10)}`, isFreshEval: true };
+
+  try {
+    const answer = evaluateInput(currentInput);
+    // As for this mix of number-string-vice-versa coercions, it makes it so it
+    // shows at most 10 digits of precision, but truncates the trailing zeroes
+    // after the decimal point from the result of `toPrecision`.
+    return { input: `${+answer.toPrecision(10)}`, isFreshEval: true };
+  } catch (err) {
+    console.error(err);
+    return { input: null };
+  }
 }
 
 function reducer(state, action) {
+  if (state.input === null) {
+    if (action.type !== 'clear') {
+      return state;
+    } else {
+      return { input: '0', isFreshEval: false };
+    }
+  }
+
   switch (action.type) {
     case 'digit':
       if (state.isFreshEval) {
@@ -108,6 +122,8 @@ function reducer(state, action) {
 
 function useCalculatorInput() {
   const [state, dispatch] = useReducer(reducer, {
+    // input is either an expression string,
+    // or null if an evaluation is an error.
     input: '0',
     isFreshEval: false,
   });

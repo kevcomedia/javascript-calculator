@@ -11,7 +11,7 @@ function createPostfixQueue(input) {
   for (const c of input) {
     if (/[\d.]/.test(c)) {
       numberQueue += c;
-    } else {
+    } else if (/[-+*/]/.test(c)) {
       postfixQueue.push(+numberQueue);
       numberQueue = '';
 
@@ -29,6 +29,8 @@ function createPostfixQueue(input) {
         }
         operatorStack.push(c);
       }
+    } else {
+      throw new Error(`Invalid input: '${c}' full input string: '${input}'`);
     }
   }
 
@@ -65,6 +67,9 @@ function evaluatePostfix(postfixQueue) {
     } else if (item === '*') {
       evalStack.push(a * b);
     } else if (item === '/') {
+      if (b === 0) {
+        throw new Error(`Division by zero: ${a} / ${b}`);
+      }
       evalStack.push(a / b);
     } else {
       throw new Error(`Invalid operator: '${item}'`);

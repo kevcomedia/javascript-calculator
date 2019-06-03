@@ -7,3 +7,9 @@ it('renders without crashing', () => {
   ReactDOM.render(<Display display="1+2" />, div);
   ReactDOM.unmountComponentAtNode(div);
 });
+
+it('renders when the display prop is null', () => {
+  const div = document.createElement('div');
+  ReactDOM.render(<Display display={null} />, div);
+  ReactDOM.unmountComponentAtNode(div);
+});
