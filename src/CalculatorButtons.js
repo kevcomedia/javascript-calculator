@@ -53,7 +53,10 @@ function CalculatorButtons({ dispatch }) {
       <CalculatorButton label="3" onClick={dispatchDigit(3)} />
       <CalculatorButton label="=" size="tall" color="blue" />
       <CalculatorButton label="0" size="wide" onClick={dispatchDigit(0)} />
-      <CalculatorButton label="." />
+      <CalculatorButton
+        label="."
+        onClick={() => dispatch({ type: 'decimal' })}
+      />
     </div>
   );
 }
