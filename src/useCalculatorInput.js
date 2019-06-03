@@ -19,6 +19,18 @@ function inputDigit(currentInput, digit) {
   return { input: currentInput + digit };
 }
 
+/**
+ * Appends the operator input to the current input string. If the input string.
+ * ends with another operator, that operator is replaced instead.
+ */
+function inputOperator(currentInput, operator) {
+  const isLastInputOperator = /[-+*/]$/.test(currentInput);
+  if (isLastInputOperator) {
+    return { input: currentInput.replace(/.$/, operator) };
+  }
+  return { input: currentInput + operator };
+}
+
 function reducer(state, action) {
   switch (action.type) {
     case 'digit':
@@ -26,7 +38,7 @@ function reducer(state, action) {
     case 'decimal':
       return { input: state.input + '.' };
     case 'operator':
-      return { input: state.input + action.operator };
+      return inputOperator(state.input, action.operator);
     case 'clear':
       return { input: '0' };
     default:
