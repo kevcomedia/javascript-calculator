@@ -1,9 +1,28 @@
 import { useReducer } from 'react';
 
+function inputDigit(currentInput, digit) {
+  const numberInputs = currentInput.split(/[-+*/]/);
+  const lastNumberInput = numberInputs[numberInputs.length - 1];
+
+  if (lastNumberInput === '0') {
+    if (digit === '0') {
+      // Don't change the input if the current number input is 0
+      // and the 0 button is pressed (e.g., the input string is '12*0').
+      return { input: currentInput };
+    } else {
+      // Replace the 0 at the end of the input string with the digit input.
+      return { input: currentInput.replace(/0$/, digit) };
+    }
+  }
+  // Typical case: input string doesn't end with the number '0'
+  // (NOT just the digit '0'; e.g., '2+10').
+  return { input: currentInput + digit };
+}
+
 function reducer(state, action) {
   switch (action.type) {
     case 'digit':
-      return { input: state.input + action.digit };
+      return inputDigit(state.input, action.digit);
     case 'decimal':
       return { input: state.input + '.' };
     case 'operator':
