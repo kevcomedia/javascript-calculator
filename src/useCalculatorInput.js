@@ -53,7 +53,7 @@ function inputDecimal(currentInput) {
 
   if (lastNumberInput === '') {
     // i.e., the input string ends with an operator
-    return { input: currentInput + '.' };
+    return { input: currentInput + '0.' };
   }
   if (Number.isNaN(Number(lastNumberInput + '.'))) {
     return { input: currentInput };
@@ -81,7 +81,7 @@ function inputEquals(currentInput) {
     // after the decimal point from the result of `toPrecision`.
     return { input: `${+answer.toPrecision(10)}`, isFreshEval: true };
   } catch (err) {
-    console.error(err);
+    console.error(err.message);
     return { input: null };
   }
 }
