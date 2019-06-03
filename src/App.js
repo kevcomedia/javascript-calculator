@@ -1,10 +1,11 @@
 import React from 'react';
+import Display from './Display';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <div className="display">0</div>
+      <Display display="0" />
       <div className="buttons">
         <button className="btn btn_type_clear btn_size_wide" type="button">
           AC
