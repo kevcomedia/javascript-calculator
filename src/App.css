@@ -49,13 +49,13 @@
   border: none;
 }
 
-.btn_type_clear {
+.btn_color_red {
   --background: #d80404;
 }
-.btn_type_equals {
+.btn_color_blue {
   --background: #058ed9;
 }
-.btn_type_operator {
+.btn_color_light {
   --background: #a39a92;
 }
 
