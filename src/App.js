@@ -8,7 +8,7 @@ const initialState = { input: '0' };
 function reducer(state, action) {
   switch (action.type) {
     case 'digit':
-      return { input: state.input + action.value };
+      return { input: state.input + action.digit };
     case 'operator':
       return { input: state.input + action.operator };
     default:

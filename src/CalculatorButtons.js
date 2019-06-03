@@ -4,7 +4,7 @@ import CalculatorButton from './CalculatorButton';
 function CalculatorButtons({ dispatch }) {
   const dispatchDigit = (digit) => {
     return () => {
-      dispatch({ type: 'digit', value: digit });
+      dispatch({ type: 'digit', digit });
     };
   };
 
