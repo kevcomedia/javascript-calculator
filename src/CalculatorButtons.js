@@ -1,5 +1,6 @@
 import React from 'react';
 import CalculatorButton from './CalculatorButton';
+import './CalculatorButtons.css';
 
 function CalculatorButtons({ dispatch }) {
   const dispatchDigit = (digit) => {

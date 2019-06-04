@@ -1,0 +1,19 @@
+.display {
+  --color: #fff;
+  background: #070606;
+  color: var(--color);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  overflow-x: scroll;
+  padding: 0.5em 1em;
+  scrollbar-color: rgba(255, 255, 255, 0.4) rgba(255, 255, 255, 0.4);
+  scrollbar-width: thin;
+  text-align: right;
+  text-overflow: '';
+  text-shadow: 0 0 0.15em var(--color);
+  white-space: nowrap;
+}
+
+.display_error {
+  --color: #f00;
+}
