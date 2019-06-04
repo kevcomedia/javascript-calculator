@@ -20,47 +20,97 @@ function CalculatorButtons({ dispatch }) {
         label="AC"
         size="wide"
         color="red"
-        onClick={() => dispatch({ type: 'clear' })}
+        keyTrigger="Escape"
+        tooltip="Esc"
+        onActivate={() => dispatch({ type: 'clear' })}
       />
       <CalculatorButton
         label="/"
         color="light"
-        onClick={dispatchOperator('/')}
+        keyTrigger="/"
+        onActivate={dispatchOperator('/')}
       />
       <CalculatorButton
         label="*"
         color="light"
-        onClick={dispatchOperator('*')}
+        keyTrigger="*"
+        onActivate={dispatchOperator('*')}
       />
-      <CalculatorButton label="7" onClick={dispatchDigit(7)} />
-      <CalculatorButton label="8" onClick={dispatchDigit(8)} />
-      <CalculatorButton label="9" onClick={dispatchDigit(9)} />
+      <CalculatorButton
+        label="7"
+        keyTrigger="7"
+        onActivate={dispatchDigit(7)}
+      />
+      <CalculatorButton
+        label="8"
+        keyTrigger="8"
+        onActivate={dispatchDigit(8)}
+      />
+      <CalculatorButton
+        label="9"
+        keyTrigger="9"
+        onActivate={dispatchDigit(9)}
+      />
       <CalculatorButton
         label="-"
         color="light"
-        onClick={dispatchOperator('-')}
+        keyTrigger="-"
+        onActivate={dispatchOperator('-')}
       />
-      <CalculatorButton label="4" onClick={dispatchDigit(4)} />
-      <CalculatorButton label="5" onClick={dispatchDigit(5)} />
-      <CalculatorButton label="6" onClick={dispatchDigit(6)} />
+      <CalculatorButton
+        label="4"
+        keyTrigger="4"
+        onActivate={dispatchDigit(4)}
+      />
+      <CalculatorButton
+        label="5"
+        keyTrigger="5"
+        onActivate={dispatchDigit(5)}
+      />
+      <CalculatorButton
+        label="6"
+        keyTrigger="6"
+        onActivate={dispatchDigit(6)}
+      />
       <CalculatorButton
         label="+"
         color="light"
-        onClick={dispatchOperator('+')}
+        keyTrigger="+"
+        onActivate={dispatchOperator('+')}
       />
-      <CalculatorButton label="1" onClick={dispatchDigit(1)} />
-      <CalculatorButton label="2" onClick={dispatchDigit(2)} />
-      <CalculatorButton label="3" onClick={dispatchDigit(3)} />
+      <CalculatorButton
+        label="1"
+        keyTrigger="1"
+        onActivate={dispatchDigit(1)}
+      />
+      <CalculatorButton
+        label="2"
+        keyTrigger="2"
+        onActivate={dispatchDigit(2)}
+      />
+      <CalculatorButton
+        label="3"
+        keyTrigger="3"
+        onActivate={dispatchDigit(3)}
+      />
       <CalculatorButton
         label="="
         size="tall"
         color="blue"
-        onClick={() => dispatch({ type: 'equals' })}
+        keyTrigger="Enter"
+        tooltip="Enter"
+        onActivate={() => dispatch({ type: 'equals' })}
       />
-      <CalculatorButton label="0" size="wide" onClick={dispatchDigit(0)} />
+      <CalculatorButton
+        label="0"
+        size="wide"
+        keyTrigger="0"
+        onActivate={dispatchDigit(0)}
+      />
       <CalculatorButton
         label="."
-        onClick={() => dispatch({ type: 'decimal' })}
+        keyTrigger="."
+        onActivate={() => dispatch({ type: 'decimal' })}
       />
     </div>
   );
